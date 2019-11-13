@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.dao.VipMapper">
+  <resultMap id="BaseResultMap" type="com.woniu.domain.Vip">
+    <id column="vip_id" jdbcType="VARCHAR" property="vipId" />
+    <result column="vip_name" jdbcType="VARCHAR" property="vipName" />
+    <result column="vip_score" jdbcType="INTEGER" property="vipScore" />
+    <result column="vip_rank" jdbcType="VARCHAR" property="vipRank" />
+    <result column="vip_phone" jdbcType="VARCHAR" property="vipPhone" />
+    <result column="vip_date" jdbcType="TIMESTAMP" property="vipDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    vip_id, vip_name, vip_score, vip_rank, vip_phone, vip_date
+  </sql>
+  <select id="selectByExample" parameterType="com.woniu.domain.VipExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vip
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from vip
+    where vip_id = #{vipId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from vip
+    where vip_id = #{vipId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.woniu.domain.VipExample">
+    delete from vip
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.woniu.domain.Vip">
+    insert into vip (vip_id, vip_name, vip_score, 
+      vip_rank, vip_phone, vip_date
+      )
+    values (#{vipId,jdbcType=VARCHAR}, #{vipName,jdbcType=VARCHAR}, #{vipScore,jdbcType=INTEGER}, 
+      #{vipRank,jdbcType=VARCHAR}, #{vipPhone,jdbcType=VARCHAR}, #{vipDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.woniu.domain.Vip">
+    insert into vip
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="vipId != null">
+        vip_id,
+      </if>
+      <if test="vipName != null">
+        vip_name,
+      </if>
+      <if test="vipScore != null">
+        vip_score,
+      </if>
+      <if test="vipRank != null">
+        vip_rank,
+      </if>
+      <if test="vipPhone != null">
+        vip_phone,
+      </if>
+      <if test="vipDate != null">
+        vip_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="vipId != null">
+        #{vipId,jdbcType=VARCHAR},
+      </if>
+      <if test="vipName != null">
+        #{vipName,jdbcType=VARCHAR},
+      </if>
+      <if test="vipScore != null">
+        #{vipScore,jdbcType=INTEGER},
+      </if>
+      <if test="vipRank != null">
+        #{vipRank,jdbcType=VARCHAR},
+      </if>
+      <if test="vipPhone != null">
+        #{vipPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="vipDate != null">
+        #{vipDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.woniu.domain.VipExample" resultType="java.lang.Long">
+    select count(*) from vip
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update vip
+    <set>
+      <if test="record.vipId != null">
+        vip_id = #{record.vipId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vipName != null">
+        vip_name = #{record.vipName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vipScore != null">
+        vip_score = #{record.vipScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.vipRank != null">
+        vip_rank = #{record.vipRank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vipPhone != null">
+        vip_phone = #{record.vipPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vipDate != null">
+        vip_date = #{record.vipDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update vip
+    set vip_id = #{record.vipId,jdbcType=VARCHAR},
+      vip_name = #{record.vipName,jdbcType=VARCHAR},
+      vip_score = #{record.vipScore,jdbcType=INTEGER},
+      vip_rank = #{record.vipRank,jdbcType=VARCHAR},
+      vip_phone = #{record.vipPhone,jdbcType=VARCHAR},
+      vip_date = #{record.vipDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.woniu.domain.Vip">
+    update vip
+    <set>
+      <if test="vipName != null">
+        vip_name = #{vipName,jdbcType=VARCHAR},
+      </if>
+      <if test="vipScore != null">
+        vip_score = #{vipScore,jdbcType=INTEGER},
+      </if>
+      <if test="vipRank != null">
+        vip_rank = #{vipRank,jdbcType=VARCHAR},
+      </if>
+      <if test="vipPhone != null">
+        vip_phone = #{vipPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="vipDate != null">
+        vip_date = #{vipDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where vip_id = #{vipId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.woniu.domain.Vip">
+    update vip
+    set vip_name = #{vipName,jdbcType=VARCHAR},
+      vip_score = #{vipScore,jdbcType=INTEGER},
+      vip_rank = #{vipRank,jdbcType=VARCHAR},
+      vip_phone = #{vipPhone,jdbcType=VARCHAR},
+      vip_date = #{vipDate,jdbcType=TIMESTAMP}
+    where vip_id = #{vipId,jdbcType=VARCHAR}
+  </update>
+</mapper>
