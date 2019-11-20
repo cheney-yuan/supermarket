@@ -8,7 +8,9 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,4 +24,17 @@ public class UserController {
 	
 	@Autowired
 	private IUserService service;
+	@DeleteMapping
+	private void ss() {
+		
+	}
+	@PostMapping
+	private void ss1() {
+		
+	}
+	@PutMapping
+	private void ss2() {
+		
+	}
+	
 }

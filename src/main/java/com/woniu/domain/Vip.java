@@ -12,7 +12,13 @@ public class Vip implements Serializable {
 
     private String vipRank;
 
-    private String vipPhone;
+    @Override
+	public String toString() {
+		return "Vip [vipId=" + vipId + ", vipName=" + vipName + ", vipScore=" + vipScore + ", vipRank=" + vipRank
+				+ ", vipPhone=" + vipPhone + ", vipDate=" + vipDate + "]";
+	}
+
+	private String vipPhone;
 
     private Date vipDate;
 

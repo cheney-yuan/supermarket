@@ -4,3 +4,11 @@ spring:
     url: jdbc:mysql://localhost:3306/market_manage?characterEncoding=utf8
     username: root
     password: root
+    
+logging:
+  level:
+    com: 
+      woniu: 
+        dao: debug 
+    
+mybatis:  config-location: classpath:mybatisConfig.xml
