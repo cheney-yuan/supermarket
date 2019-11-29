@@ -26,4 +26,15 @@ public class UserServiceImpl implements IUserService {
 		return list.size()==0?null:list.get(0); 
 	}
 
+	@Override
+	public List<User> findAll() {
+		return mapper.selectAll();
+	}
+
+	@Override
+	public void update(User user) {
+		// TODO Auto-generated method stub
+		mapper.updateByPrimaryKeySelective(user);
+	}
+
 }

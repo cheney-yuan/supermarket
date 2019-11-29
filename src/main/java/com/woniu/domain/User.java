@@ -10,6 +10,8 @@ public class User implements Serializable {
     private String upwd;
 
     private String salt;
+    
+    private Role role;
 
     private static final long serialVersionUID = 1L;
 
@@ -17,7 +19,15 @@ public class User implements Serializable {
         return uid;
     }
 
-    public void setUid(Integer uid) {
+    public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public void setUid(Integer uid) {
         this.uid = uid;
     }
 

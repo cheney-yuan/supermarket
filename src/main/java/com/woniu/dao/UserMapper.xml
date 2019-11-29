@@ -193,4 +193,22 @@
       salt = #{salt,jdbcType=VARCHAR}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectAll"  resultMap="rm">
+    select * 
+    from user u,user_role ur,role r 
+    where ur.uid = u.uid AND r.rid = ur.rid
+  </select>
+  <resultMap type="com.woniu.domain.User" id="rm">
+	  <id column="uid" jdbcType="INTEGER" property="uid" />
+	  <result column="uname" jdbcType="VARCHAR" property="uname" />
+	  <result column="upwd" jdbcType="VARCHAR" property="upwd" />
+	  <result column="salt" jdbcType="VARCHAR" property="salt" />
+	  <association property="role" javaType="com.woniu.domain.Role">
+	  	<id column="rid" jdbcType="INTEGER" property="rid" />
+    	<result column="rname" jdbcType="VARCHAR" property="rname" />
+	  </association>
+  </resultMap>
+  
+  
 </mapper>
