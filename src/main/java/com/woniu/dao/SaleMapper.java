@@ -2,6 +2,7 @@ package com.woniu.dao;
 
 import com.woniu.domain.Sale;
 import com.woniu.domain.SaleExample;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +28,6 @@ public interface SaleMapper {
     int updateByPrimaryKeySelective(Sale record);
 
     int updateByPrimaryKey(Sale record);
+    
+    List<Sale> selectFindAll();
 }

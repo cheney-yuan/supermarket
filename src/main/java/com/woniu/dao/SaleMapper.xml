@@ -65,6 +65,18 @@
       </foreach>
     </where>
   </sql>
+
+<resultMap type="com.woniu.domain.Sale" id="sss"
+		extends="BaseResultMap">
+		<collection property="salesdetail" column="SDID"
+			select="com.woniu.dao.SaleDetailMapper.findBySSId" />
+		
+	</resultMap>
+	<select id="selectFindAll" resultMap="sss">
+		select * from sales
+	</select>  
+
+  
   <sql id="Base_Column_List">
     sale_id, sale_allprice, sale_date, staff_id
   </sql>
